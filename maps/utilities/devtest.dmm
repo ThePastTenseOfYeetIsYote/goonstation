@@ -223,7 +223,6 @@
 /turf/simulated/floor,
 /area/devzone)
 "dL" = (
-/obj/table/reinforced/chemistry/auto/chemstorage,
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/machinery/glass_recycler/chemistry{
@@ -233,6 +232,7 @@
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/glass/beaker/large,
+/obj/table/reinforced/chemistry/auto/allinone,
 /turf/simulated/floor,
 /area/devzone)
 "dQ" = (
@@ -1217,10 +1217,10 @@
 /turf/simulated/floor/black,
 /area/devzone)
 "qn" = (
-/obj/landmark/start/job/scientist,
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/landmark/start/job/assistant,
 /turf/simulated/floor,
 /area/devzone)
 "qs" = (
@@ -2972,10 +2972,6 @@
 "PO" = (
 /obj/reagent_dispensers/beerkeg,
 /turf/simulated/floor/white,
-/area/devzone)
-"PQ" = (
-/obj/landmark/start/job/assistant,
-/turf/simulated/floor,
 /area/devzone)
 "PZ" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -5631,7 +5627,7 @@ Yx
 Yx
 Yx
 Yx
-PQ
+Yx
 Yx
 Yx
 Yx
