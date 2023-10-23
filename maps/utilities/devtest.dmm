@@ -232,7 +232,7 @@
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/glass/beaker/large,
-/obj/table/reinforced/chemistry/auto/allinone,
+/obj/table/reinforced/chemistry/auto/auxsup,
 /turf/simulated/floor,
 /area/devzone)
 "dQ" = (
