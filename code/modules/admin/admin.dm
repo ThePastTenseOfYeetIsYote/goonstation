@@ -924,7 +924,7 @@ var/global/noir = 0
 			var/mob/M = locate(href_list["target"])
 			if (src.level >= LEVEL_PA || isnull(M.client) && src.level >= LEVEL_SA)
 				if (ismob(M))
-					var/speech = input("What will [M] say?", "Force speech", null) as text
+					var/speech = input("What will [M] say?", "Force speech", null) as text|null
 					if(!speech)
 						return
 					M.say(speech)
@@ -2933,7 +2933,6 @@ var/global/noir = 0
 								if(istype(H.mutantrace, /datum/mutantrace/zombie))
 									continue //Already a zombie!
 
-								qdel(H.mutantrace)
 								H.set_mutantrace(/datum/mutantrace/zombie)
 								setalive(H) //Set stat back to zero so we can call death()
 								H.death()//Calling death() again means that the zombies will rise after ~20 seconds.
