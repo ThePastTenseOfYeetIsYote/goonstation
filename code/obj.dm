@@ -224,9 +224,9 @@
 		if (istype(I, /obj/item/grab/))
 			var/obj/item/grab/G = I
 			if  (!grab_smash(G, user))
-				return ..(I, user)
+				return ..()
 			else return
-		return ..(I, user)
+		return ..()
 
 	serialize(var/savefile/F, var/path, var/datum/sandbox/sandbox)
 		F["[path].type"] << type
@@ -262,9 +262,6 @@
 
 	deserialize_postprocess()
 		return
-
-/obj/proc/get_movement_controller(mob/user)
-	return
 
 /obj/bedsheetbin
 	name = "linen bin"
@@ -454,7 +451,9 @@ ADMIN_INTERACT_PROCS(/obj, proc/admin_command_obj_speak)
 	var/image/chat_maptext/chat_text = make_chat_maptext(src, message, "color: '#DDDDDD';", alpha = 255)
 
 	var/list/mob/targets = null
-	var/mob/holder = src.loc
+	var/mob/holder = src
+	while(holder && !istype(holder))
+		holder = holder.loc
 	ENSURE_TYPE(holder)
 	if(!holder)
 		targets = hearers(src, null)
