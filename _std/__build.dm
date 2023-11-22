@@ -125,7 +125,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_WRESTLEMAP   // Wrestlemap by Overtone
 
 //-------Rotation maps:
-#define MAP_OVERRIDE_COGMAP				// Cogmap1, by Dr. Cogwerks
+//#define MAP_OVERRIDE_COGMAP				// Cogmap1, by Dr. Cogwerks
 //#define MAP_OVERRIDE_COGMAP2			// Cogmap2, by Dr. Cogwerks
 //#define MAP_OVERRIDE_DONUT2				// Updated Donut2, by committee. Currently managed by Sord.
 //#define MAP_OVERRIDE_DONUT3				// Donut3 by Ryumi
@@ -134,7 +134,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_CLARION			// Used to be Destiny's Alt. By Dionsu and a69andahalf.
 //#define MAP_OVERRIDE_OSHAN				// Oshan by committee
 //#define MAP_OVERRIDE_NADIR				// Nadir Extraction Site by Kubius
-//#define MAP_OVERRIDE_DEVTEST			// Developer Testing map by cringe
+#define MAP_OVERRIDE_DEVTEST			// Developer Testing map by cringe
 
 //-------Discontinued or gimmick maps:
 //#define MAP_OVERRIDE_MANTA				// manta map
