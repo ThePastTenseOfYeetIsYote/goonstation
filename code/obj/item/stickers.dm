@@ -12,10 +12,11 @@
 	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE | VIS_INHERIT_LAYER
 	hide_attack = TRUE
 	var/dont_make_an_overlay = 0
-	var/active = 0
+	var/active = FALSE
 	var/overlay_key
 	var/atom/attached
 	var/list/random_icons = list()
+	HELP_MESSAGE_OVERRIDE("Can be attached to a storage item directly, rather than adding to its contents, by mouse dropping it onto the storage.")
 
 	New()
 		..()
@@ -45,6 +46,8 @@
 		return 1
 
 	proc/stick_to(var/atom/A, var/pox, var/poy, user)
+		if(src.active)
+			CRASH("Sticker [src] attempted to attach to [A] [A?.type] but is already active with target [attached] [attached?.type]!")
 		if (!dont_make_an_overlay)
 			var/image/sticker = image('icons/misc/stickers.dmi', src.icon_state)
 			//sticker.layer = //EFFECTS_LAYER_BASE // I swear to fuckin god stop being under CLOTHES you SHIT
@@ -66,7 +69,7 @@
 			src.pixel_y = poy
 
 		src.attached = A
-		src.active = 1
+		src.active = TRUE
 		src.set_loc(A)
 
 		playsound(src, 'sound/items/sticker.ogg', 50, TRUE)
@@ -75,7 +78,7 @@
 
 	throw_impact(atom/A, datum/thrown_thing/thr)
 		..()
-		if (prob(50))
+		if (prob(50) && !src.active)
 			A.visible_message(SPAN_ALERT("[src] lands on [A] sticky side down!"))
 			src.stick_to(A,rand(-5,5),rand(-8,8))
 
@@ -94,12 +97,12 @@
 		if (!dont_make_an_overlay)
 			attached.ClearSpecificOverlays(overlay_key)
 			overlay_key = 0
-		active = 0
+		active = FALSE
 		src.invisibility = INVIS_NONE
 		src.pixel_x = initial(pixel_x)
 		src.pixel_y = initial(pixel_y)
 		attached.visible_message(SPAN_ALERT("<b>[src]</b> un-sticks from [attached] and falls to the floor!"))
-		attached = 0
+		attached = null
 
 	disposing()
 		if (attached)
@@ -107,6 +110,12 @@
 				attached.ClearSpecificOverlays(overlay_key)
 			attached.visible_message(SPAN_ALERT("<b>[src]</b> is destroyed!"))
 		..()
+
+	mouse_drop(atom/over_object)
+		if (over_object.storage && can_act(usr) && (src in usr.equipped_list()) && BOUNDS_DIST(usr, over_object) <= 0)
+			src.afterattack(over_object, usr)
+		else
+			..()
 
 /obj/item/sticker/postit
 	// this used to be some paper shit, then it was a cleanable/writing, now it's a sticker
@@ -229,6 +238,7 @@
 		src.pixel_x = initial(src.pixel_x)
 		src.pixel_y = initial(src.pixel_y)
 		src.attached = null
+		src.active = FALSE
 
 	fall_off()
 		src.remove_from_attached()

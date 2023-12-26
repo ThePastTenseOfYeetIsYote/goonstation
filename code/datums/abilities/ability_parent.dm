@@ -710,7 +710,7 @@
 		else
 			src.screen_loc = "NORTH-[pos_y],[pos_x]"
 
-		var/name = initial(owner.name)
+		var/name = owner.name
 		if (owner.holder)
 			if (owner.holder.usesPoints && owner.pointCost)
 				name += "<br> Cost: [owner.pointCost] [owner.holder.pointName]"
@@ -1200,8 +1200,8 @@
 			for(var/atom/movable/screen/ability/A in src.hud.objects)
 				src.hud.remove_object(A)
 
-		x_occupied = 1
-		y_occupied = 0
+		x_occupied = start_x
+		y_occupied = start_y
 		any_abilities_displayed = 0
 		if (!src.hidden)
 			for (var/datum/abilityHolder/H in holders)
