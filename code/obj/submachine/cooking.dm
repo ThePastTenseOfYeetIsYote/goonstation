@@ -56,8 +56,7 @@ TYPEINFO(/obj/submachine/chef_sink)
 				else
 					playsound(src.loc, 'sound/impact_sounds/Liquid_Slosh_1.ogg', 15, 1)
 					user.visible_message(SPAN_NOTICE("[user] dunks [W:affecting]'s head in the sink!"))
-
-
+					GRAB.affecting.lastgasp() // --BLUH
 
 		else if (W.burning)
 			W.combust_ended()
@@ -110,7 +109,6 @@ TYPEINFO(/obj/submachine/chef_sink)
 /datum/action/bar/private/handwashing
 	duration = 1 SECOND //roughly matches the rate of manual clicking
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ATTACKED
-	id = "handwashing"
 	var/mob/living/carbon/human/user
 	var/obj/submachine/chef_sink/sink
 
@@ -163,7 +161,6 @@ TYPEINFO(/obj/submachine/chef_sink)
 
 /datum/action/bar/private/critterwashing
 	duration = 7 DECI SECONDS
-	id = "critterwashing"
 	var/mob/living/carbon/human/user
 	var/obj/submachine/chef_sink/sink
 	var/mob/living/critter/small_animal/victim
@@ -680,7 +677,12 @@ table#cooktime a#start {
 			src.recipes += new /datum/cookingrecipe/oven/churro(src)
 			src.recipes += new /datum/cookingrecipe/oven/nougat(src)
 			src.recipes += new /datum/cookingrecipe/oven/candy_cane(src)
+			src.recipes += new /datum/cookingrecipe/oven/cereal_box(src)
 			src.recipes += new /datum/cookingrecipe/oven/cereal_honey(src)
+			src.recipes += new /datum/cookingrecipe/oven/cereal_tanhony(src)
+			src.recipes += new /datum/cookingrecipe/oven/cereal_roach(src)
+			src.recipes += new /datum/cookingrecipe/oven/cereal_syndie(src)
+			src.recipes += new /datum/cookingrecipe/oven/cereal_flock(src)
 			src.recipes += new /datum/cookingrecipe/oven/b_cupcake(src)
 			src.recipes += new /datum/cookingrecipe/oven/beefood(src)
 			src.recipes += new /datum/cookingrecipe/oven/zongzi(src)
@@ -790,6 +792,8 @@ table#cooktime a#start {
 			src.recipes += new /datum/cookingrecipe/oven/hotdog(src)
 			src.recipes += new /datum/cookingrecipe/oven/cheesewheel(src)
 			src.recipes += new /datum/cookingrecipe/oven/turkey(src)
+			src.recipes += new /datum/cookingrecipe/oven/melted_sugar(src)
+			src.recipes += new /datum/cookingrecipe/oven/brownie_batch(src)
 
 			// store the list for later
 			oven_recipes = src.recipes
@@ -1541,6 +1545,7 @@ TYPEINFO(/obj/submachine/mixer)
 		if (!src.recipes.len)
 			src.recipes += new /datum/cookingrecipe/mixer/mix_cake_custom(src)
 			src.recipes += new /datum/cookingrecipe/mixer/pancake_batter(src)
+			src.recipes += new /datum/cookingrecipe/mixer/brownie_batter(src)
 			src.recipes += new /datum/cookingrecipe/mixer/cake_batter(src)
 			src.recipes += new /datum/cookingrecipe/mixer/custard(src)
 			src.recipes += new /datum/cookingrecipe/mixer/mashedpotatoes(src)
